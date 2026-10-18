@@ -23,6 +23,7 @@ The system is built on a decoupled, three-tier architecture emphasizing reproduc
 11. [Demonstration Walkthrough Checklist](#11-demonstration-walkthrough-checklist)
 12. [Troubleshooting Guide](#12-troubleshooting-guide)
 13. [Limitations & Academic Integrity](#13-limitations--academic-integrity)
+14. [Zero-Cost Cloud Deployment (Vercel + Render + Neon)](#14-zero-cost-cloud-deployment-vercel--render--neon)
 
 ---
 
@@ -354,3 +355,16 @@ Classroom Insight is an **academic research prototype**. To prevent misapplicati
 4. **Proxy Variables & Fairness:** Features such as extra paid classes (`paid`) and school support (`schoolsup`) reflect socioeconomic conditions and institutional practices. The models capture statistical associations, not causal effects, and must never be interpreted as establishing causation.
 5. **Point Estimates & Absence of Calibrated Intervals:** Model predictions represent point trajectory estimates clipped to the domain bounds `[0.0, 20.0]`. The system does not calculate or claim calibrated individual confidence intervals or uncertainty bounds. Statistical estimates do not guarantee an individual student's future examination score.
 6. **Pedagogical Support Only:** Predictions are intended solely to support educator reflection and prompt timely academic support, never for automated student placement, streaming, or disciplinary decisions.
+
+---
+
+## 14. Zero-Cost Cloud Deployment (Vercel + Render + Neon)
+
+Classroom Insight can be deployed to production entirely within free-tier limits without recurring hosting costs:
+
+- **Frontend (Vercel Hobby):** React 18 + Vite SPA deployed on Vercel's global edge network with SPA routing rules configured in [`client/vercel.json`](file:///client/vercel.json).
+- **Backend & ML Inference (Render Free Web Service):** Single unified Docker container running both the Java 25 Spring Boot public service and the internal Python FastAPI ML engine (bound strictly to loopback `127.0.0.1:8000`, never exposed publicly).
+- **Persistent Storage (Neon Free PostgreSQL):** Serverless PostgreSQL database for production prediction history and verified outcomes, replacing local file-backed H2 for cloud environments.
+
+For complete, step-by-step setup instructions, required environment variables, memory tuning guidelines, and post-deployment verification procedures, see the comprehensive [Deployment Guide](file:///docs/DEPLOYMENT_GUIDE.md).
+

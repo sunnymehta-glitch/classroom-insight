@@ -27,9 +27,28 @@ export class ApiError extends Error {
   }
 }
 
+export function resolveApiUrl(path: string): string {
+  const envBase = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE_URL)
+    ? String(import.meta.env.VITE_API_BASE_URL).trim()
+    : '';
+
+  if (!envBase || envBase === 'undefined' || envBase === 'null' || envBase === '""') {
+    return path;
+  }
+
+  const normalizedBase = envBase.replace(/\/+$/, '');
+  if (normalizedBase.endsWith('/api') && path.startsWith('/api')) {
+    return `${normalizedBase}${path.slice(4)}`;
+  }
+
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  return `${normalizedBase}${normalizedPath}`;
+}
+
 const DEFAULT_TIMEOUT_MS = 15000;
 
 async function request<T>(path: string, options: RequestInit = {}, timeoutMs: number = DEFAULT_TIMEOUT_MS): Promise<T> {
+  const url = resolveApiUrl(path);
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -42,7 +61,7 @@ async function request<T>(path: string, options: RequestInit = {}, timeoutMs: nu
   }
 
   try {
-    const response = await fetch(path, {
+    const response = await fetch(url, {
       ...options,
       headers: {
         ...defaultHeaders,

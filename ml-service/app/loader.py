@@ -134,6 +134,10 @@ class ModelLoader:
                 list(self.load_errors.keys()),
             )
 
+        # Force immediate garbage collection of temporary deserialization buffers
+        import gc
+        gc.collect()
+
         return self.is_healthy
 
     @property

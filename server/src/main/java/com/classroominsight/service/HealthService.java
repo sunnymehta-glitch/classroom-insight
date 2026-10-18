@@ -32,13 +32,16 @@ public class HealthService {
     public HealthResult checkHealth() {
         boolean dbHealthy = false;
         Map<String, Object> dbDetails = new HashMap<>();
-        dbDetails.put("database", "H2");
-
         try (Connection conn = dataSource.getConnection()) {
             dbHealthy = conn.isValid(2);
-            dbDetails.put("file", "data/h2/classroom_insight");
+            String productName = conn.getMetaData().getDatabaseProductName();
+            dbDetails.put("database", productName != null ? productName : "Relational Database");
+            if ("H2".equalsIgnoreCase(productName)) {
+                dbDetails.put("file", "data/h2/classroom_insight");
+            }
         } catch (Exception ex) {
             logger.warn("Database health check failed: {}", ex.getMessage());
+            dbDetails.put("database", "Relational Database");
             dbDetails.put("error", ex.getMessage());
         }
 

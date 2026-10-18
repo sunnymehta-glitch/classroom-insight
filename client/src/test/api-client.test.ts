@@ -1,10 +1,39 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { api, ApiError } from '../api/client';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { api, ApiError, resolveApiUrl } from '../api/client';
 import { PredictionRequest } from '../types/api';
 
 describe('Typed API Client', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    (import.meta.env as any).VITE_API_BASE_URL = '';
+  });
+
+  describe('resolveApiUrl', () => {
+    afterEach(() => {
+      (import.meta.env as any).VITE_API_BASE_URL = '';
+    });
+
+    it('returns original path when VITE_API_BASE_URL is empty or undefined', () => {
+      (import.meta.env as any).VITE_API_BASE_URL = '';
+      expect(resolveApiUrl('/api/health')).toBe('/api/health');
+      expect(resolveApiUrl('/api/predictions')).toBe('/api/predictions');
+    });
+
+    it('correctly prepends base URL ending in /api', () => {
+      (import.meta.env as any).VITE_API_BASE_URL = 'https://classroom-insight.onrender.com/api';
+      expect(resolveApiUrl('/api/health')).toBe('https://classroom-insight.onrender.com/api/health');
+      expect(resolveApiUrl('/api/predictions?goal=regression')).toBe('https://classroom-insight.onrender.com/api/predictions?goal=regression');
+    });
+
+    it('handles trailing slash on base URL ending in /api/', () => {
+      (import.meta.env as any).VITE_API_BASE_URL = 'https://classroom-insight.onrender.com/api/';
+      expect(resolveApiUrl('/api/health')).toBe('https://classroom-insight.onrender.com/api/health');
+    });
+
+    it('handles base URL without /api suffix', () => {
+      (import.meta.env as any).VITE_API_BASE_URL = 'https://classroom-insight.onrender.com';
+      expect(resolveApiUrl('/api/health')).toBe('https://classroom-insight.onrender.com/api/health');
+    });
   });
 
   it('fetches system health from Spring Boot /api/health', async () => {
