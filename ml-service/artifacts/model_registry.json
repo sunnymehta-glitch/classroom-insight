@@ -1,0 +1,442 @@
+[
+  {
+    "model_id": "linear_regression",
+    "name": "Linear Regression",
+    "family": "Linear Regression",
+    "task": "regression",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Ordinary least squares linear regression baseline",
+    "metrics": {
+      "mae": 1.3129,
+      "rmse": 2.0382,
+      "r2": 0.7931
+    },
+    "cv_metrics": {
+      "cv_mae_mean": 1.1912,
+      "cv_mae_std": 0.0658,
+      "cv_rmse_mean": 1.9122,
+      "cv_rmse_std": 0.1682,
+      "cv_r2_mean": 0.8175,
+      "cv_r2_std": 0.053
+    },
+    "artifact_file": "linear_regression.joblib",
+    "selected_primary_candidate": false
+  },
+  {
+    "model_id": "decision_tree_regressor",
+    "name": "Decision Tree Regressor",
+    "family": "Decision Tree",
+    "task": "regression",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Pruned decision tree for interpretable grade estimation",
+    "metrics": {
+      "mae": 1.1302,
+      "rmse": 1.8757,
+      "r2": 0.8248
+    },
+    "cv_metrics": {
+      "cv_mae_mean": 1.0332,
+      "cv_mae_std": 0.2032,
+      "cv_rmse_mean": 1.9038,
+      "cv_rmse_std": 0.4222,
+      "cv_r2_mean": 0.8033,
+      "cv_r2_std": 0.1019
+    },
+    "artifact_file": "decision_tree_regressor.joblib",
+    "selected_primary_candidate": false
+  },
+  {
+    "model_id": "random_forest_regressor",
+    "name": "Random Forest Regressor",
+    "family": "Random Forest",
+    "task": "regression",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Ensemble of randomized decision trees",
+    "metrics": {
+      "mae": 1.1154,
+      "rmse": 1.7787,
+      "r2": 0.8425
+    },
+    "cv_metrics": {
+      "cv_mae_mean": 0.969,
+      "cv_mae_std": 0.1276,
+      "cv_rmse_mean": 1.574,
+      "cv_rmse_std": 0.2413,
+      "cv_r2_mean": 0.8734,
+      "cv_r2_std": 0.0474
+    },
+    "artifact_file": "random_forest_regressor.joblib",
+    "selected_primary_candidate": true
+  },
+  {
+    "model_id": "svr",
+    "name": "Support Vector Regression (SVR)",
+    "family": "SVM",
+    "task": "regression",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Support vector machine regression with RBF kernel",
+    "metrics": {
+      "mae": 1.242,
+      "rmse": 2.0213,
+      "r2": 0.7966
+    },
+    "cv_metrics": {
+      "cv_mae_mean": 1.2548,
+      "cv_mae_std": 0.0818,
+      "cv_rmse_mean": 2.052,
+      "cv_rmse_std": 0.1782,
+      "cv_r2_mean": 0.7936,
+      "cv_r2_std": 0.0411
+    },
+    "artifact_file": "svr.joblib",
+    "selected_primary_candidate": false
+  },
+  {
+    "model_id": "knn_regressor",
+    "name": "K-Nearest Neighbors Regressor",
+    "family": "KNN",
+    "task": "regression",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Distance-weighted k-nearest neighbors regression",
+    "metrics": {
+      "mae": 1.4426,
+      "rmse": 2.2165,
+      "r2": 0.7554
+    },
+    "cv_metrics": {
+      "cv_mae_mean": 1.4275,
+      "cv_mae_std": 0.1661,
+      "cv_rmse_mean": 2.148,
+      "cv_rmse_std": 0.2802,
+      "cv_r2_mean": 0.769,
+      "cv_r2_std": 0.0735
+    },
+    "artifact_file": "knn_regressor.joblib",
+    "selected_primary_candidate": false
+  },
+  {
+    "model_id": "logistic_regression",
+    "name": "Logistic Regression",
+    "family": "Logistic Regression",
+    "task": "classification",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "L2-regularized logistic regression classifier",
+    "metrics": {
+      "accuracy": 0.8861,
+      "precision_macro": 0.8666,
+      "recall_macro": 0.8857,
+      "f1_macro": 0.8745,
+      "fail_class_metrics": {
+        "recall": 0.8846,
+        "precision": 0.7931,
+        "f1": 0.8364
+      },
+      "pass_class_metrics": {
+        "recall": 0.8868,
+        "precision": 0.94,
+        "f1": 0.9126
+      },
+      "confusion_matrix": {
+        "class_labels": [
+          "fail",
+          "pass"
+        ],
+        "axes": "rows=actual, columns=predicted",
+        "matrix": [
+          [
+            23,
+            3
+          ],
+          [
+            6,
+            47
+          ]
+        ],
+        "true_negative": 23,
+        "false_positive": 3,
+        "false_negative": 6,
+        "true_positive": 47
+      }
+    },
+    "cv_metrics": {
+      "cv_accuracy_mean": 0.9145,
+      "cv_accuracy_std": 0.0385,
+      "cv_f1_macro_mean": 0.9032,
+      "cv_f1_macro_std": 0.0409,
+      "cv_precision_macro_mean": 0.9108,
+      "cv_precision_macro_std": 0.0501,
+      "cv_recall_macro_mean": 0.8992,
+      "cv_recall_macro_std": 0.0327,
+      "cv_fail_recall_mean": 0.8552,
+      "cv_fail_recall_std": 0.0332,
+      "cv_fail_precision_mean": 0.8913,
+      "cv_fail_precision_std": 0.0925,
+      "cv_fail_f1_mean": 0.8704,
+      "cv_fail_f1_std": 0.0516
+    },
+    "artifact_file": "logistic_regression.joblib",
+    "selected_primary_candidate": false
+  },
+  {
+    "model_id": "decision_tree_classifier",
+    "name": "Decision Tree Classifier",
+    "family": "Decision Tree",
+    "task": "classification",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Shallow decision tree for binary pass/fail rule extraction",
+    "metrics": {
+      "accuracy": 0.8734,
+      "precision_macro": 0.8565,
+      "recall_macro": 0.8959,
+      "f1_macro": 0.8656,
+      "fail_class_metrics": {
+        "recall": 0.9615,
+        "precision": 0.7353,
+        "f1": 0.8333
+      },
+      "pass_class_metrics": {
+        "recall": 0.8302,
+        "precision": 0.9778,
+        "f1": 0.898
+      },
+      "confusion_matrix": {
+        "class_labels": [
+          "fail",
+          "pass"
+        ],
+        "axes": "rows=actual, columns=predicted",
+        "matrix": [
+          [
+            25,
+            1
+          ],
+          [
+            9,
+            44
+          ]
+        ],
+        "true_negative": 25,
+        "false_positive": 1,
+        "false_negative": 9,
+        "true_positive": 44
+      }
+    },
+    "cv_metrics": {
+      "cv_accuracy_mean": 0.9304,
+      "cv_accuracy_std": 0.0216,
+      "cv_f1_macro_mean": 0.9229,
+      "cv_f1_macro_std": 0.0226,
+      "cv_precision_macro_mean": 0.9177,
+      "cv_precision_macro_std": 0.0262,
+      "cv_recall_macro_mean": 0.9307,
+      "cv_recall_macro_std": 0.0189,
+      "cv_fail_recall_mean": 0.9324,
+      "cv_fail_recall_std": 0.0245,
+      "cv_fail_precision_mean": 0.8695,
+      "cv_fail_precision_std": 0.0492,
+      "cv_fail_f1_mean": 0.899,
+      "cv_fail_f1_std": 0.0278
+    },
+    "artifact_file": "decision_tree_classifier.joblib",
+    "selected_primary_candidate": false
+  },
+  {
+    "model_id": "random_forest_classifier",
+    "name": "Random Forest Classifier",
+    "family": "Random Forest",
+    "task": "classification",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Random forest ensemble for robust pass/fail classification",
+    "metrics": {
+      "accuracy": 0.8734,
+      "precision_macro": 0.8537,
+      "recall_macro": 0.8861,
+      "f1_macro": 0.8638,
+      "fail_class_metrics": {
+        "recall": 0.9231,
+        "precision": 0.75,
+        "f1": 0.8276
+      },
+      "pass_class_metrics": {
+        "recall": 0.8491,
+        "precision": 0.9574,
+        "f1": 0.9
+      },
+      "confusion_matrix": {
+        "class_labels": [
+          "fail",
+          "pass"
+        ],
+        "axes": "rows=actual, columns=predicted",
+        "matrix": [
+          [
+            24,
+            2
+          ],
+          [
+            8,
+            45
+          ]
+        ],
+        "true_negative": 24,
+        "false_positive": 2,
+        "false_negative": 8,
+        "true_positive": 45
+      }
+    },
+    "cv_metrics": {
+      "cv_accuracy_mean": 0.9336,
+      "cv_accuracy_std": 0.0116,
+      "cv_f1_macro_mean": 0.9258,
+      "cv_f1_macro_std": 0.0123,
+      "cv_precision_macro_mean": 0.9222,
+      "cv_precision_macro_std": 0.0158,
+      "cv_recall_macro_mean": 0.9307,
+      "cv_recall_macro_std": 0.0111,
+      "cv_fail_recall_mean": 0.9229,
+      "cv_fail_recall_std": 0.0242,
+      "cv_fail_precision_mean": 0.8828,
+      "cv_fail_precision_std": 0.0324,
+      "cv_fail_f1_mean": 0.9017,
+      "cv_fail_f1_std": 0.0156
+    },
+    "artifact_file": "random_forest_classifier.joblib",
+    "selected_primary_candidate": true
+  },
+  {
+    "model_id": "svc",
+    "name": "Support Vector Classifier (SVC)",
+    "family": "SVM",
+    "task": "classification",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Support vector classifier with RBF kernel",
+    "metrics": {
+      "accuracy": 0.8354,
+      "precision_macro": 0.8121,
+      "recall_macro": 0.8284,
+      "f1_macro": 0.8187,
+      "fail_class_metrics": {
+        "recall": 0.8077,
+        "precision": 0.7241,
+        "f1": 0.7636
+      },
+      "pass_class_metrics": {
+        "recall": 0.8491,
+        "precision": 0.9,
+        "f1": 0.8738
+      },
+      "confusion_matrix": {
+        "class_labels": [
+          "fail",
+          "pass"
+        ],
+        "axes": "rows=actual, columns=predicted",
+        "matrix": [
+          [
+            21,
+            5
+          ],
+          [
+            8,
+            45
+          ]
+        ],
+        "true_negative": 21,
+        "false_positive": 5,
+        "false_negative": 8,
+        "true_positive": 45
+      }
+    },
+    "cv_metrics": {
+      "cv_accuracy_mean": 0.8923,
+      "cv_accuracy_std": 0.0647,
+      "cv_f1_macro_mean": 0.8787,
+      "cv_f1_macro_std": 0.068,
+      "cv_precision_macro_mean": 0.8912,
+      "cv_precision_macro_std": 0.0799,
+      "cv_recall_macro_mean": 0.8729,
+      "cv_recall_macro_std": 0.0564,
+      "cv_fail_recall_mean": 0.8171,
+      "cv_fail_recall_std": 0.0472,
+      "cv_fail_precision_mean": 0.8714,
+      "cv_fail_precision_std": 0.1395,
+      "cv_fail_f1_mean": 0.839,
+      "cv_fail_f1_std": 0.0841
+    },
+    "artifact_file": "svc.joblib",
+    "selected_primary_candidate": false
+  },
+  {
+    "model_id": "knn_classifier",
+    "name": "K-Nearest Neighbors Classifier",
+    "family": "KNN",
+    "task": "classification",
+    "version": "1.0.0",
+    "status": "available",
+    "description": "Distance-weighted k-nearest neighbors classification",
+    "metrics": {
+      "accuracy": 0.8481,
+      "precision_macro": 0.8322,
+      "recall_macro": 0.8182,
+      "f1_macro": 0.8244,
+      "fail_class_metrics": {
+        "recall": 0.7308,
+        "precision": 0.7917,
+        "f1": 0.76
+      },
+      "pass_class_metrics": {
+        "recall": 0.9057,
+        "precision": 0.8727,
+        "f1": 0.8889
+      },
+      "confusion_matrix": {
+        "class_labels": [
+          "fail",
+          "pass"
+        ],
+        "axes": "rows=actual, columns=predicted",
+        "matrix": [
+          [
+            19,
+            7
+          ],
+          [
+            5,
+            48
+          ]
+        ],
+        "true_negative": 19,
+        "false_positive": 7,
+        "false_negative": 5,
+        "true_positive": 48
+      }
+    },
+    "cv_metrics": {
+      "cv_accuracy_mean": 0.8797,
+      "cv_accuracy_std": 0.0509,
+      "cv_f1_macro_mean": 0.8639,
+      "cv_f1_macro_std": 0.0522,
+      "cv_precision_macro_mean": 0.8759,
+      "cv_precision_macro_std": 0.0667,
+      "cv_recall_macro_mean": 0.8587,
+      "cv_recall_macro_std": 0.0408,
+      "cv_fail_recall_mean": 0.7981,
+      "cv_fail_recall_std": 0.0353,
+      "cv_fail_precision_mean": 0.8493,
+      "cv_fail_precision_std": 0.1232,
+      "cv_fail_f1_mean": 0.8182,
+      "cv_fail_f1_std": 0.063
+    },
+    "artifact_file": "knn_classifier.joblib",
+    "selected_primary_candidate": false
+  }
+]

@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sidebar-bg: #211B3B;
+    --primary: #6855F5;
+    --hero-bg: #30265C;
+    --canvas-bg: #F7F6FC;
+    --card-bg: #FFFFFF;
+    --main-text: #292444;
+    --secondary-text: #625C78;
+    --success: #087F70;
+    --warning: #92520A;
+    --danger: #C5221F;
+    --border-color: #E7E3F0;
+  }
+
+  body {
+    background-color: var(--canvas-bg);
+    color: var(--main-text);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid #6855F5;
+    outline-offset: 2px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D0E3;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B9B4CE;
+}

@@ -1,0 +1,91 @@
+
+services:
+  # ---------------------------------------------------------------------------
+  # Tier 1: Internal Machine Learning Inference Service (Python + FastAPI)
+  # ---------------------------------------------------------------------------
+  ml-service:
+    build:
+      context: ./ml-service
+      dockerfile: Dockerfile
+    container_name: classroom-insight-ml
+    expose:
+      - "8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - ARTIFACTS_DIR=/app/artifacts
+      - REPORTS_DIR=/app/artifacts
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./ml-service/artifacts:/app/artifacts:ro
+    networks:
+      - classroom-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/internal/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # ---------------------------------------------------------------------------
+  # Tier 2: Public Application Backend (Java 25 LTS + Spring Boot 3.5.16 + H2)
+  # ---------------------------------------------------------------------------
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: classroom-insight-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_PORT=8080
+      - ML_SERVICE_URL=http://ml-service:8000
+      - ML_SERVICE_TIMEOUT_MS=5000
+      - SPRING_DATASOURCE_URL=jdbc:h2:file:/app/data/h2/classroom_insight;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      - SPRING_DATASOURCE_USERNAME=sa
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_H2_CONSOLE_ENABLED=true
+    volumes:
+      # Persistent H2 file storage directory on host
+      - ./data/h2:/app/data/h2
+    depends_on:
+      ml-service:
+        condition: service_healthy
+    networks:
+      - classroom-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 25s
+
+  # ---------------------------------------------------------------------------
+  # Tier 3: Presentation Tier (React 18 + Vite + Nginx Reverse Proxy)
+  # ---------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: classroom-insight-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - classroom-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:5173/"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  classroom-network:
+    name: classroom-network
+    driver: bridge

@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ClassroomInsightFeatureSchema",
+  "version": "1.0.0",
+  "dataset": {
+    "name": "UCI Student Performance - Mathematics",
+    "filename": "student-mat.csv",
+    "source_url": "https://archive.ics.uci.edu/dataset/320/student-performance",
+    "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+    "authors": "Paulo Cortez and Alice Silva (2008)",
+    "total_records": 395,
+    "total_attributes": 33,
+    "delimiter": ";",
+    "g3_zero_records": 38,
+    "g3_zero_percentage": 9.62,
+    "pass_count": 265,
+    "pass_percentage": 67.09,
+    "fail_count": 130,
+    "fail_percentage": 32.91
+  },
+  "targets": {
+    "regression": {
+      "name": "G3",
+      "type": "integer",
+      "scale": {
+        "min": 0,
+        "max": 20
+      },
+      "description": "Final mathematics course grade (0 to 20 scale). Note: Never allowed as an inference input."
+    },
+    "classification": {
+      "name": "pass_status",
+      "type": "string",
+      "allowed_values": ["pass", "fail"],
+      "derivation_rule": "G3 >= 10 ? 'pass' : 'fail'",
+      "threshold": 10,
+      "description": "Binary academic outcome derived strictly from G3. Portuguese education convention: G3 >= 10 is pass, G3 < 10 is fail."
+    }
+  },
+  "features": {
+    "G1": {
+      "order": 1,
+      "type": "integer",
+      "description": "First-period mathematics grade",
+      "allowed_range": {
+        "min": 0,
+        "max": 20
+      },
+      "observed_range": {
+        "min": 3,
+        "max": 19
+      },
+      "unit": "points (0-20 scale)",
+      "ui": {
+        "label": "Period 1 Grade (G1)",
+        "helper_text": "First-period score from 0 to 20"
+      }
+    },
+    "G2": {
+      "order": 2,
+      "type": "integer",
+      "description": "Second-period mathematics grade",
+      "allowed_range": {
+        "min": 0,
+        "max": 20
+      },
+      "observed_range": {
+        "min": 0,
+        "max": 19
+      },
+      "unit": "points (0-20 scale)",
+      "ui": {
+        "label": "Period 2 Grade (G2)",
+        "helper_text": "Second-period score from 0 to 20"
+      }
+    },
+    "studytime": {
+      "order": 3,
+      "type": "integer",
+      "description": "Weekly study time band",
+      "allowed_values": [1, 2, 3, 4],
+      "value_meanings": {
+        "1": "< 2 hours / week",
+        "2": "2 to 5 hours / week",
+        "3": "5 to 10 hours / week",
+        "4": "> 10 hours / week"
+      },
+      "observed_distribution": {
+        "1": 105,
+        "2": 198,
+        "3": 65,
+        "4": 27
+      },
+      "ui": {
+        "label": "Weekly Study Time",
+        "helper_text": "1: <2 hrs, 2: 2-5 hrs, 3: 5-10 hrs, 4: >10 hrs"
+      }
+    },
+    "failures": {
+      "order": 4,
+      "type": "integer",
+      "description": "Number of past class failures",
+      "allowed_values": [0, 1, 2, 3],
+      "value_meanings": {
+        "0": "0 past failures (no past failures)",
+        "1": "1 past failure",
+        "2": "2 past failures",
+        "3": "3 past failures (maximum observed in dataset)"
+      },
+      "observed_distribution": {
+        "0": 312,
+        "1": 50,
+        "2": 17,
+        "3": 16
+      },
+      "dataset_semantics_note": "Official UCI documentation (student.txt) states: 'numeric: n if 1<=n<3, else 4'. However, empirical analysis of both student-mat.csv and student-por.csv proves that the only values present in the data are 0, 1, 2, and 3. Value 4 does not occur anywhere in the dataset (count = 0 in both Math and Portuguese files). To guarantee that the models are never presented with an unseen or unsupported category, and to prevent silent out-of-vocabulary encoding errors, the canonical schema strictly preserves the raw observed domain: allowed_values = [0, 1, 2, 3].",
+      "ui": {
+        "label": "Past Class Failures",
+        "helper_text": "Number of past class failures (0, 1, 2, or 3)"
+      }
+    },
+    "absences": {
+      "order": 5,
+      "type": "integer",
+      "description": "Number of school absences",
+      "allowed_range": {
+        "min": 0,
+        "max": 93
+      },
+      "observed_range": {
+        "min": 0,
+        "max": 75
+      },
+      "unit": "absence count",
+      "dataset_semantics_note": "Official UCI documentation defines the attribute domain from 0 to 93. In the Mathematics dataset (student-mat.csv), the maximum observed absences is 75 (minimum 0).",
+      "ui": {
+        "label": "School Absences",
+        "helper_text": "Total recorded absences (source domain: 0 to 93; observed max in Math dataset: 75)"
+      }
+    },
+    "schoolsup": {
+      "order": 6,
+      "type": "string",
+      "description": "Extra educational support from school",
+      "allowed_values": ["no", "yes"],
+      "value_meanings": {
+        "no": "No extra school educational support",
+        "yes": "Receives extra school educational support"
+      },
+      "observed_distribution": {
+        "no": 344,
+        "yes": 51
+      },
+      "ui": {
+        "label": "School Support",
+        "helper_text": "Extra educational support provided by the school"
+      }
+    },
+    "famsup": {
+      "order": 7,
+      "type": "string",
+      "description": "Family educational support",
+      "allowed_values": ["no", "yes"],
+      "value_meanings": {
+        "no": "No family educational support",
+        "yes": "Receives family educational support"
+      },
+      "observed_distribution": {
+        "no": 153,
+        "yes": 242
+      },
+      "ui": {
+        "label": "Family Support",
+        "helper_text": "Educational support provided by family members"
+      }
+    },
+    "paid": {
+      "order": 8,
+      "type": "string",
+      "description": "Extra paid classes within the course subject (Math)",
+      "allowed_values": ["no", "yes"],
+      "value_meanings": {
+        "no": "No extra paid classes",
+        "yes": "Attends extra paid classes for Math"
+      },
+      "observed_distribution": {
+        "no": 214,
+        "yes": 181
+      },
+      "ui": {
+        "label": "Paid Classes",
+        "helper_text": "Extra paid tutoring classes for mathematics"
+      }
+    }
+  },
+  "metadata_inputs": {
+    "student_reference": {
+      "type": "string",
+      "required": false,
+      "pattern": "^[A-Za-z0-9_-]{1,32}$",
+      "description": "Optional non-identifying reference identifier (e.g., STU-001). Never collect student names, dates of birth, or PII.",
+      "ui": {
+        "label": "Student Reference (Optional)",
+        "helper_text": "Anonymous identifier (letters, digits, dashes, underscores up to 32 chars)"
+      }
+    }
+  },
+  "required_features": [
+    "G1",
+    "G2",
+    "studytime",
+    "failures",
+    "absences",
+    "schoolsup",
+    "famsup",
+    "paid"
+  ],
+  "disallowed_features": [
+    "G3"
+  ]
+}

@@ -1,0 +1,14 @@
+# Classroom Insight — ML Service & Offline Training Dependencies
+# Python 3.14 compatible pinned versions
+
+numpy==2.5.4
+scipy==1.18.1
+pandas==3.0.6
+scikit-learn==1.9.1
+joblib==1.6.0
+pytest==9.1.1
+fastapi==0.143.3
+uvicorn==0.54.0
+pydantic==2.14.1
+httpx==0.28.1
+

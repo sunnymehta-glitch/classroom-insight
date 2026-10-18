@@ -1,0 +1,798 @@
+{
+  "metadata": {
+    "title": "Classroom Insight Model Evaluation Report",
+    "version": "1.0.0",
+    "generated_at": "2026-10-17T18:25:22.488196+00:00",
+    "dataset": {
+      "name": "UCI Student Performance - Mathematics",
+      "filename": "student-mat.csv",
+      "sha256": "e47f9ee225e1ee6e69b7564e6dac7123e80b8486677fe111f351964cef5dec80",
+      "total_samples": 395,
+      "features": [
+        "G1",
+        "G2",
+        "studytime",
+        "failures",
+        "absences",
+        "schoolsup",
+        "famsup",
+        "paid"
+      ],
+      "schema_version": "1.0.0"
+    },
+    "split": {
+      "test_size": 0.2,
+      "random_state": 42,
+      "train_samples": 316,
+      "test_samples": 79,
+      "stratification": "pass_status"
+    },
+    "environment": {
+      "python_version": "3.14.6 (tags/v3.14.6:c63aec6, Jun 10 2026, 10:26:10) [MSC v.1944 64 bit (AMD64)]",
+      "scikit_learn_version": "1.9.1",
+      "numpy_version": "2.5.4",
+      "pandas_version": "3.0.6"
+    }
+  },
+  "regression_models": {
+    "linear_regression": {
+      "model_id": "linear_regression",
+      "name": "Linear Regression",
+      "family": "Linear Regression",
+      "task": "regression",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Ordinary least squares linear regression baseline",
+      "cv_metrics": {
+        "cv_mae_mean": 1.1912,
+        "cv_mae_std": 0.0658,
+        "cv_rmse_mean": 1.9122,
+        "cv_rmse_std": 0.1682,
+        "cv_r2_mean": 0.8175,
+        "cv_r2_std": 0.053
+      },
+      "test_metrics": {
+        "raw": {
+          "mae": 1.3237,
+          "rmse": 2.0399,
+          "r2": 0.7928
+        },
+        "clipped": {
+          "mae": 1.3129,
+          "rmse": 2.0382,
+          "r2": 0.7931
+        }
+      },
+      "artifact_file": "linear_regression.joblib"
+    },
+    "decision_tree_regressor": {
+      "model_id": "decision_tree_regressor",
+      "name": "Decision Tree Regressor",
+      "family": "Decision Tree",
+      "task": "regression",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Pruned decision tree for interpretable grade estimation",
+      "cv_metrics": {
+        "cv_mae_mean": 1.0332,
+        "cv_mae_std": 0.2032,
+        "cv_rmse_mean": 1.9038,
+        "cv_rmse_std": 0.4222,
+        "cv_r2_mean": 0.8033,
+        "cv_r2_std": 0.1019
+      },
+      "test_metrics": {
+        "raw": {
+          "mae": 1.1302,
+          "rmse": 1.8757,
+          "r2": 0.8248
+        },
+        "clipped": {
+          "mae": 1.1302,
+          "rmse": 1.8757,
+          "r2": 0.8248
+        }
+      },
+      "artifact_file": "decision_tree_regressor.joblib"
+    },
+    "random_forest_regressor": {
+      "model_id": "random_forest_regressor",
+      "name": "Random Forest Regressor",
+      "family": "Random Forest",
+      "task": "regression",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Ensemble of randomized decision trees",
+      "cv_metrics": {
+        "cv_mae_mean": 0.969,
+        "cv_mae_std": 0.1276,
+        "cv_rmse_mean": 1.574,
+        "cv_rmse_std": 0.2413,
+        "cv_r2_mean": 0.8734,
+        "cv_r2_std": 0.0474
+      },
+      "test_metrics": {
+        "raw": {
+          "mae": 1.1154,
+          "rmse": 1.7787,
+          "r2": 0.8425
+        },
+        "clipped": {
+          "mae": 1.1154,
+          "rmse": 1.7787,
+          "r2": 0.8425
+        }
+      },
+      "artifact_file": "random_forest_regressor.joblib"
+    },
+    "svr": {
+      "model_id": "svr",
+      "name": "Support Vector Regression (SVR)",
+      "family": "SVM",
+      "task": "regression",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Support vector machine regression with RBF kernel",
+      "cv_metrics": {
+        "cv_mae_mean": 1.2548,
+        "cv_mae_std": 0.0818,
+        "cv_rmse_mean": 2.052,
+        "cv_rmse_std": 0.1782,
+        "cv_r2_mean": 0.7936,
+        "cv_r2_std": 0.0411
+      },
+      "test_metrics": {
+        "raw": {
+          "mae": 1.242,
+          "rmse": 2.0213,
+          "r2": 0.7966
+        },
+        "clipped": {
+          "mae": 1.242,
+          "rmse": 2.0213,
+          "r2": 0.7966
+        }
+      },
+      "artifact_file": "svr.joblib"
+    },
+    "knn_regressor": {
+      "model_id": "knn_regressor",
+      "name": "K-Nearest Neighbors Regressor",
+      "family": "KNN",
+      "task": "regression",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Distance-weighted k-nearest neighbors regression",
+      "cv_metrics": {
+        "cv_mae_mean": 1.4275,
+        "cv_mae_std": 0.1661,
+        "cv_rmse_mean": 2.148,
+        "cv_rmse_std": 0.2802,
+        "cv_r2_mean": 0.769,
+        "cv_r2_std": 0.0735
+      },
+      "test_metrics": {
+        "raw": {
+          "mae": 1.4426,
+          "rmse": 2.2165,
+          "r2": 0.7554
+        },
+        "clipped": {
+          "mae": 1.4426,
+          "rmse": 2.2165,
+          "r2": 0.7554
+        }
+      },
+      "artifact_file": "knn_regressor.joblib"
+    }
+  },
+  "classification_models": {
+    "logistic_regression": {
+      "model_id": "logistic_regression",
+      "name": "Logistic Regression",
+      "family": "Logistic Regression",
+      "task": "classification",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "L2-regularized logistic regression classifier",
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9145,
+        "cv_accuracy_std": 0.0385,
+        "cv_f1_macro_mean": 0.9032,
+        "cv_f1_macro_std": 0.0409,
+        "cv_precision_macro_mean": 0.9108,
+        "cv_precision_macro_std": 0.0501,
+        "cv_recall_macro_mean": 0.8992,
+        "cv_recall_macro_std": 0.0327,
+        "cv_fail_recall_mean": 0.8552,
+        "cv_fail_recall_std": 0.0332,
+        "cv_fail_precision_mean": 0.8913,
+        "cv_fail_precision_std": 0.0925,
+        "cv_fail_f1_mean": 0.8704,
+        "cv_fail_f1_std": 0.0516
+      },
+      "test_metrics": {
+        "accuracy": 0.8861,
+        "precision_macro": 0.8666,
+        "recall_macro": 0.8857,
+        "f1_macro": 0.8745,
+        "fail_class_metrics": {
+          "recall": 0.8846,
+          "precision": 0.7931,
+          "f1": 0.8364
+        },
+        "pass_class_metrics": {
+          "recall": 0.8868,
+          "precision": 0.94,
+          "f1": 0.9126
+        },
+        "confusion_matrix": {
+          "class_labels": [
+            "fail",
+            "pass"
+          ],
+          "axes": "rows=actual, columns=predicted",
+          "matrix": [
+            [
+              23,
+              3
+            ],
+            [
+              6,
+              47
+            ]
+          ],
+          "true_negative": 23,
+          "false_positive": 3,
+          "false_negative": 6,
+          "true_positive": 47
+        }
+      },
+      "artifact_file": "logistic_regression.joblib"
+    },
+    "decision_tree_classifier": {
+      "model_id": "decision_tree_classifier",
+      "name": "Decision Tree Classifier",
+      "family": "Decision Tree",
+      "task": "classification",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Shallow decision tree for binary pass/fail rule extraction",
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9304,
+        "cv_accuracy_std": 0.0216,
+        "cv_f1_macro_mean": 0.9229,
+        "cv_f1_macro_std": 0.0226,
+        "cv_precision_macro_mean": 0.9177,
+        "cv_precision_macro_std": 0.0262,
+        "cv_recall_macro_mean": 0.9307,
+        "cv_recall_macro_std": 0.0189,
+        "cv_fail_recall_mean": 0.9324,
+        "cv_fail_recall_std": 0.0245,
+        "cv_fail_precision_mean": 0.8695,
+        "cv_fail_precision_std": 0.0492,
+        "cv_fail_f1_mean": 0.899,
+        "cv_fail_f1_std": 0.0278
+      },
+      "test_metrics": {
+        "accuracy": 0.8734,
+        "precision_macro": 0.8565,
+        "recall_macro": 0.8959,
+        "f1_macro": 0.8656,
+        "fail_class_metrics": {
+          "recall": 0.9615,
+          "precision": 0.7353,
+          "f1": 0.8333
+        },
+        "pass_class_metrics": {
+          "recall": 0.8302,
+          "precision": 0.9778,
+          "f1": 0.898
+        },
+        "confusion_matrix": {
+          "class_labels": [
+            "fail",
+            "pass"
+          ],
+          "axes": "rows=actual, columns=predicted",
+          "matrix": [
+            [
+              25,
+              1
+            ],
+            [
+              9,
+              44
+            ]
+          ],
+          "true_negative": 25,
+          "false_positive": 1,
+          "false_negative": 9,
+          "true_positive": 44
+        }
+      },
+      "artifact_file": "decision_tree_classifier.joblib"
+    },
+    "random_forest_classifier": {
+      "model_id": "random_forest_classifier",
+      "name": "Random Forest Classifier",
+      "family": "Random Forest",
+      "task": "classification",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Random forest ensemble for robust pass/fail classification",
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9336,
+        "cv_accuracy_std": 0.0116,
+        "cv_f1_macro_mean": 0.9258,
+        "cv_f1_macro_std": 0.0123,
+        "cv_precision_macro_mean": 0.9222,
+        "cv_precision_macro_std": 0.0158,
+        "cv_recall_macro_mean": 0.9307,
+        "cv_recall_macro_std": 0.0111,
+        "cv_fail_recall_mean": 0.9229,
+        "cv_fail_recall_std": 0.0242,
+        "cv_fail_precision_mean": 0.8828,
+        "cv_fail_precision_std": 0.0324,
+        "cv_fail_f1_mean": 0.9017,
+        "cv_fail_f1_std": 0.0156
+      },
+      "test_metrics": {
+        "accuracy": 0.8734,
+        "precision_macro": 0.8537,
+        "recall_macro": 0.8861,
+        "f1_macro": 0.8638,
+        "fail_class_metrics": {
+          "recall": 0.9231,
+          "precision": 0.75,
+          "f1": 0.8276
+        },
+        "pass_class_metrics": {
+          "recall": 0.8491,
+          "precision": 0.9574,
+          "f1": 0.9
+        },
+        "confusion_matrix": {
+          "class_labels": [
+            "fail",
+            "pass"
+          ],
+          "axes": "rows=actual, columns=predicted",
+          "matrix": [
+            [
+              24,
+              2
+            ],
+            [
+              8,
+              45
+            ]
+          ],
+          "true_negative": 24,
+          "false_positive": 2,
+          "false_negative": 8,
+          "true_positive": 45
+        }
+      },
+      "artifact_file": "random_forest_classifier.joblib"
+    },
+    "svc": {
+      "model_id": "svc",
+      "name": "Support Vector Classifier (SVC)",
+      "family": "SVM",
+      "task": "classification",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Support vector classifier with RBF kernel",
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.8923,
+        "cv_accuracy_std": 0.0647,
+        "cv_f1_macro_mean": 0.8787,
+        "cv_f1_macro_std": 0.068,
+        "cv_precision_macro_mean": 0.8912,
+        "cv_precision_macro_std": 0.0799,
+        "cv_recall_macro_mean": 0.8729,
+        "cv_recall_macro_std": 0.0564,
+        "cv_fail_recall_mean": 0.8171,
+        "cv_fail_recall_std": 0.0472,
+        "cv_fail_precision_mean": 0.8714,
+        "cv_fail_precision_std": 0.1395,
+        "cv_fail_f1_mean": 0.839,
+        "cv_fail_f1_std": 0.0841
+      },
+      "test_metrics": {
+        "accuracy": 0.8354,
+        "precision_macro": 0.8121,
+        "recall_macro": 0.8284,
+        "f1_macro": 0.8187,
+        "fail_class_metrics": {
+          "recall": 0.8077,
+          "precision": 0.7241,
+          "f1": 0.7636
+        },
+        "pass_class_metrics": {
+          "recall": 0.8491,
+          "precision": 0.9,
+          "f1": 0.8738
+        },
+        "confusion_matrix": {
+          "class_labels": [
+            "fail",
+            "pass"
+          ],
+          "axes": "rows=actual, columns=predicted",
+          "matrix": [
+            [
+              21,
+              5
+            ],
+            [
+              8,
+              45
+            ]
+          ],
+          "true_negative": 21,
+          "false_positive": 5,
+          "false_negative": 8,
+          "true_positive": 45
+        }
+      },
+      "artifact_file": "svc.joblib"
+    },
+    "knn_classifier": {
+      "model_id": "knn_classifier",
+      "name": "K-Nearest Neighbors Classifier",
+      "family": "KNN",
+      "task": "classification",
+      "version": "1.0.0",
+      "status": "available",
+      "description": "Distance-weighted k-nearest neighbors classification",
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.8797,
+        "cv_accuracy_std": 0.0509,
+        "cv_f1_macro_mean": 0.8639,
+        "cv_f1_macro_std": 0.0522,
+        "cv_precision_macro_mean": 0.8759,
+        "cv_precision_macro_std": 0.0667,
+        "cv_recall_macro_mean": 0.8587,
+        "cv_recall_macro_std": 0.0408,
+        "cv_fail_recall_mean": 0.7981,
+        "cv_fail_recall_std": 0.0353,
+        "cv_fail_precision_mean": 0.8493,
+        "cv_fail_precision_std": 0.1232,
+        "cv_fail_f1_mean": 0.8182,
+        "cv_fail_f1_std": 0.063
+      },
+      "test_metrics": {
+        "accuracy": 0.8481,
+        "precision_macro": 0.8322,
+        "recall_macro": 0.8182,
+        "f1_macro": 0.8244,
+        "fail_class_metrics": {
+          "recall": 0.7308,
+          "precision": 0.7917,
+          "f1": 0.76
+        },
+        "pass_class_metrics": {
+          "recall": 0.9057,
+          "precision": 0.8727,
+          "f1": 0.8889
+        },
+        "confusion_matrix": {
+          "class_labels": [
+            "fail",
+            "pass"
+          ],
+          "axes": "rows=actual, columns=predicted",
+          "matrix": [
+            [
+              19,
+              7
+            ],
+            [
+              5,
+              48
+            ]
+          ],
+          "true_negative": 19,
+          "false_positive": 7,
+          "false_negative": 5,
+          "true_positive": 48
+        }
+      },
+      "artifact_file": "knn_classifier.joblib"
+    }
+  },
+  "model_selection": {
+    "policy": "Model candidate selection is determined strictly on the training partition via 5-fold cross-validation. Held-out test data is preserved solely for final evaluation and never used for model or feature selection.",
+    "regression": {
+      "candidate_pool": "Five fitted ML regressors across the approved algorithm families (Linear Regression, Decision Tree, Random Forest, SVR, KNN)",
+      "benchmark_baseline": "G3 = G2 (Heuristic benchmark, not a fitted ML family)",
+      "selected_primary_candidate": "random_forest_regressor",
+      "primary_selection_metric": "Lowest mean 5-fold CV MAE on training partition among fitted ML regressors",
+      "cv_performance": {
+        "cv_mae_mean": 0.969,
+        "cv_mae_std": 0.1276,
+        "cv_rmse_mean": 1.574,
+        "cv_rmse_std": 0.2413,
+        "cv_r2_mean": 0.8734,
+        "cv_r2_std": 0.0474
+      },
+      "test_performance": {
+        "mae": 1.1154,
+        "rmse": 1.7787,
+        "r2": 0.8425
+      },
+      "baseline_comparison": "The heuristic benchmark baseline G3 = G2 achieves lower CV MAE (0.9279 vs 0.9690) and slightly lower test MAE (1.1013 vs 1.1154). However, Random Forest achieves significantly lower CV RMSE (1.5740 vs 1.9902), lower test RMSE (1.7787 vs 2.0531, approximately 13.4% lower test RMSE, corresponding to a 24.9% lower test MSE from 4.2152 to 3.1638), higher CV R2 (0.8734 vs 0.8011), and higher test R2 (0.8425 vs 0.7901). Random Forest is the selected candidate among fitted ML models, offering substantially superior quadratic error control and variance explanation, while the heuristic baseline has slightly better mean absolute error."
+    },
+    "classification": {
+      "candidate_pool": "Five fitted ML classifiers across the approved algorithm families (Logistic Regression, Decision Tree, Random Forest, SVC, KNN)",
+      "benchmark_baseline": "Majority class predictor (predict 'pass')",
+      "selected_primary_candidate": "random_forest_classifier",
+      "primary_selection_metric": "Mean 5-fold Stratified CV Macro F1 on training partition",
+      "cv_performance": {
+        "cv_accuracy_mean": 0.9336,
+        "cv_accuracy_std": 0.0116,
+        "cv_f1_macro_mean": 0.9258,
+        "cv_f1_macro_std": 0.0123,
+        "cv_precision_macro_mean": 0.9222,
+        "cv_precision_macro_std": 0.0158,
+        "cv_recall_macro_mean": 0.9307,
+        "cv_recall_macro_std": 0.0111,
+        "cv_fail_recall_mean": 0.9229,
+        "cv_fail_recall_std": 0.0242,
+        "cv_fail_precision_mean": 0.8828,
+        "cv_fail_precision_std": 0.0324,
+        "cv_fail_f1_mean": 0.9017,
+        "cv_fail_f1_std": 0.0156
+      },
+      "test_performance": {
+        "accuracy": 0.8734,
+        "precision_macro": 0.8537,
+        "recall_macro": 0.8861,
+        "f1_macro": 0.8638,
+        "fail_class_metrics": {
+          "recall": 0.9231,
+          "precision": 0.75,
+          "f1": 0.8276
+        },
+        "pass_class_metrics": {
+          "recall": 0.8491,
+          "precision": 0.9574,
+          "f1": 0.9
+        },
+        "confusion_matrix": {
+          "class_labels": [
+            "fail",
+            "pass"
+          ],
+          "axes": "rows=actual, columns=predicted",
+          "matrix": [
+            [
+              24,
+              2
+            ],
+            [
+              8,
+              45
+            ]
+          ],
+          "true_negative": 24,
+          "false_positive": 2,
+          "false_negative": 8,
+          "true_positive": 45
+        }
+      },
+      "selection_rationale": "Selected strictly by highest mean CV Macro F1 (0.9258) on training folds. Training CV accuracy (0.9336) and fail-class recall (0.9229) serve as secondary comparison metrics and supporting diagnostics."
+    }
+  },
+  "baselines": {
+    "regression_baseline_g3_equals_g2": {
+      "rule": "Predict G3 = G2",
+      "cv_metrics": {
+        "cv_mae_mean": 0.9279,
+        "cv_rmse_mean": 1.9902,
+        "cv_r2_mean": 0.8011
+      },
+      "test_metrics": {
+        "mae": 1.1013,
+        "rmse": 2.0531,
+        "r2": 0.7901
+      },
+      "tradeoff_analysis": "On the held-out test set, G3 = G2 achieves a slightly lower MAE (1.1013 vs 1.1154 for RF), but Random Forest achieves a significantly lower RMSE (1.7787 vs 2.0531) and higher R2 (0.8425 vs 0.7901). Random Forest penalizes large prediction errors more effectively."
+    },
+    "classification_majority_baseline": {
+      "predicted_class": "pass",
+      "test_metrics": {
+        "accuracy": 0.6709,
+        "precision_macro": 0.3354,
+        "recall_macro": 0.5,
+        "f1_macro": 0.4015,
+        "confusion_matrix": {
+          "true_negative": 0,
+          "false_positive": 26,
+          "false_negative": 0,
+          "true_positive": 53
+        }
+      }
+    }
+  },
+  "g2_only_comparison": {
+    "feature_used": [
+      "G2"
+    ],
+    "model": "Linear Regression",
+    "cv_metrics": {
+      "cv_mae_mean": 1.1329,
+      "cv_mae_std": 0.0788,
+      "cv_rmse_mean": 1.9346,
+      "cv_rmse_std": 0.1478,
+      "cv_r2_mean": 0.812,
+      "cv_r2_std": 0.057
+    },
+    "test_metrics": {
+      "raw": {
+        "mae": 1.2891,
+        "rmse": 2.0362,
+        "r2": 0.7936
+      },
+      "clipped": {
+        "mae": 1.2513,
+        "rmse": 2.0223,
+        "r2": 0.7964
+      }
+    }
+  },
+  "ablation_study": {
+    "ablation_features": [
+      "G1",
+      "G2",
+      "studytime",
+      "failures",
+      "absences"
+    ],
+    "excluded_features": [
+      "schoolsup",
+      "famsup",
+      "paid"
+    ],
+    "hyperparameters": {
+      "random_forest_regressor": "n_estimators=100, max_depth=5, min_samples_split=4, random_state=42, unscaled numeric passthrough",
+      "random_forest_classifier": "n_estimators=100, max_depth=5, min_samples_split=4, random_state=42, unscaled numeric passthrough"
+    },
+    "rationale": "Evaluate predictive impact of removing external support indicators which can act as socioeconomic proxies. Model selection is based on training CV comparisons, while test metrics are reported for evaluation.",
+    "random_forest_regressor": {
+      "cv_metrics": {
+        "cv_mae_mean": 0.9433,
+        "cv_mae_std": 0.1427,
+        "cv_rmse_mean": 1.5276,
+        "cv_rmse_std": 0.2872,
+        "cv_r2_mean": 0.8793,
+        "cv_r2_std": 0.0508
+      },
+      "test_metrics": {
+        "raw": {
+          "mae": 1.0737,
+          "rmse": 1.7073,
+          "r2": 0.8549
+        },
+        "clipped": {
+          "mae": 1.0737,
+          "rmse": 1.7073,
+          "r2": 0.8549
+        }
+      }
+    },
+    "random_forest_classifier": {
+      "cv_metrics": {
+        "cv_accuracy_mean": 0.9272,
+        "cv_accuracy_std": 0.0161,
+        "cv_f1_macro_mean": 0.9187,
+        "cv_f1_macro_std": 0.0169,
+        "cv_precision_macro_mean": 0.9162,
+        "cv_precision_macro_std": 0.0209,
+        "cv_recall_macro_mean": 0.9235,
+        "cv_recall_macro_std": 0.0156,
+        "cv_fail_recall_mean": 0.9133,
+        "cv_fail_recall_std": 0.0359,
+        "cv_fail_precision_mean": 0.8753,
+        "cv_fail_precision_std": 0.0448,
+        "cv_fail_f1_mean": 0.8925,
+        "cv_fail_f1_std": 0.0213
+      },
+      "test_metrics": {
+        "accuracy": 0.8861,
+        "precision_macro": 0.8663,
+        "recall_macro": 0.8955,
+        "f1_macro": 0.8765,
+        "fail_class_metrics": {
+          "recall": 0.9231,
+          "precision": 0.7742,
+          "f1": 0.8421
+        },
+        "pass_class_metrics": {
+          "recall": 0.8679,
+          "precision": 0.9583,
+          "f1": 0.9109
+        },
+        "confusion_matrix": {
+          "class_labels": [
+            "fail",
+            "pass"
+          ],
+          "axes": "rows=actual, columns=predicted",
+          "matrix": [
+            [
+              24,
+              2
+            ],
+            [
+              7,
+              46
+            ]
+          ],
+          "true_negative": 24,
+          "false_positive": 2,
+          "false_negative": 7,
+          "true_positive": 46
+        }
+      }
+    },
+    "cv_comparison_note": "This ablation study serves as an offline diagnostic comparison, not a reason to alter the approved 8-feature schema contract. For classification, the full 8-feature RF achieved higher training CV Macro F1 (0.9258 vs 0.9187) than the ablated model. For regression, training CV R2 was numerically higher on the ablated set (0.8793 vs 0.8734, a small difference of 0.0059), which is well within cross-validation fold standard deviation (+/- 0.049) and does not indicate meaningful superiority. The locked 8-feature contract is retained in accordance with CLASSROOM_INSIGHT_FINAL_MASTER_PLAN.md. Neither feature selection nor hyperparameter tuning was performed by repeatedly inspecting held-out test data. These findings suggest external support features contribute marginal predictive signal relative to prior grades and study discipline, but this observation alone does not prove or disprove systemic bias."
+  },
+  "g3_zero_sensitivity_analysis": {
+    "total_population": 395,
+    "g3_zero_count": 38,
+    "g3_zero_percentage": 9.62,
+    "non_zero_population": 357,
+    "train_samples": 285,
+    "test_samples": 72,
+    "neutral_investigation_note": "38 students (9.62%) have a recorded final grade of G3 = 0. In secondary school mathematics, a zero final score may arise from multiple factors such as absence from the final examination, course withdrawal, disciplinary penalty, or obtaining zero marks. The UCI dataset does not provide individual ground-truth attendance or completion flags. This sensitivity analysis documents model behavior when G3 = 0 records are excluded. Because the evaluation population differs, these metrics cannot be directly equated with the primary models, but illustrate that metric variance is heavily concentrated in zero-grade outcomes.",
+    "models": {
+      "linear_regression": {
+        "cv_metrics": {
+          "cv_mae_mean": 0.6303,
+          "cv_mae_std": 0.0437,
+          "cv_rmse_mean": 0.8207,
+          "cv_rmse_std": 0.0586,
+          "cv_r2_mean": 0.9285,
+          "cv_r2_std": 0.022
+        },
+        "test_metrics": {
+          "raw": {
+            "mae": 0.7364,
+            "rmse": 0.9162,
+            "r2": 0.9234
+          },
+          "clipped": {
+            "mae": 0.7364,
+            "rmse": 0.9162,
+            "r2": 0.9234
+          }
+        }
+      },
+      "random_forest_regressor": {
+        "cv_metrics": {
+          "cv_mae_mean": 0.6911,
+          "cv_mae_std": 0.0366,
+          "cv_rmse_mean": 0.8968,
+          "cv_rmse_std": 0.0448,
+          "cv_r2_mean": 0.9157,
+          "cv_r2_std": 0.0209
+        },
+        "test_metrics": {
+          "raw": {
+            "mae": 0.691,
+            "rmse": 0.8808,
+            "r2": 0.9292
+          },
+          "clipped": {
+            "mae": 0.691,
+            "rmse": 0.8808,
+            "r2": 0.9292
+          }
+        }
+      }
+    }
+  }
+}
